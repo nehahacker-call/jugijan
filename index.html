@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RTV (jugijan campus)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color:blue;
+        }
+        form {
+            background-color:aqua;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color:bluecx ;
+        }
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        @media (max-width: 480px) {
+            form {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <form id="studentForm">
+        <h1>RTV (Jugijan Campus) Security Test</h1>
+
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br>
+
+        <label>"Why did you click on this link?":</label><br>
+        <input type="text" name="class" required><br>
+
+        <label>Mobile namber:</label><br>
+        <input type="text" name="mobile" required><br>
+        
+        <label>tumi ki kunu cinata nokori ai link tut kil korica :</label><br>
+        <input type="text" name="mobile" required><br>
+
+        <button type="submit">Submit</button>
+        <p id="status"></p>
+    </form>
+
+    <script>
+        const form = document.getElementById('studentForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                name: form.name.value,
+                class: form.class.value,
+                mobile: form.mobile.value
+            };
+            fetch("https://script.google.com/macros/s/AKfycbz3rQv9nyn-B_NNyy2Vyj6WN2hZcsFgpncziEsCGhn4sB-Cwm-gP52RnvphqzH1QxCL/exec", {
+                method: "POST",
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('status').innerText = text;
+                form.reset();
+            })
+            .catch(err => {
+                document.getElementById('status').innerText = "Error: " + err;
+            });
+        });
+    </script>
+
+</body>
+
